@@ -4,7 +4,7 @@
  * www.drewwilson.com
  * www.addfullsize.com
  *
- * Version 1.0   -   Updated: Mar. 30, 2009
+ * Version 1.1.1   -   Updated: Jul. 2, 2009
  *
  * Fullsize is an attempt to standardize the way in page 'image popups' work.
  * It seems there are hundreds of javascripts light boxes, modal boxes, image zooms, image popups, etc.
@@ -37,12 +37,16 @@
 		  	zoomInSpeed: 200,  
 		  	zoomOutSpeed: 200,
 		  	fadeInSpeed: 250,  
-		  	fadeOutSpeed: 250,  
+		  	fadeOutSpeed: 250,
+		  	leftOffset: 0,
+		  	topOffset: 0,
 		  	iconOffset: 8,
 		  	forceTitleBar: false,
 		  	extraTrigger: false,
 		  	parentSteps: 0,
-		  	destroy: false
+		  	destroy: false,
+		  	start: function(){},
+		  	end: function(){}
 	  	};  
 	 	var opts = $.extend(defaults, options);
 	 	
@@ -57,6 +61,7 @@
 	 			$("div.fullsize-wrapper, div.fullsize-sh-wrap").fadeOut(opts.fadeOutSpeed, function(){
 	 				$(this).remove();
 	 			});
+	 			opts.end.call(this);
 	 		}
 	 	});
 		
@@ -142,7 +147,9 @@
 					});
 					
 					$(icon).click(function(){
-					
+						
+						opts.start.call(this);
+						
 						// If a Fullsize Popup is currently active, we will remove it before creating a new one.	
 						$("div.fullsize-wrapper, div.fullsize-sh-wrap").remove();
 						
@@ -153,8 +160,13 @@
 						var scrollleft = $(window).scrollLeft();								
 
 						// Setup the Loading DIV 
-						var loading_left = ((win_w / 2) + scrollleft) - 25;
-						var loading_top = ((win_h / 2) + scrolltop) - 25;
+						if(!$.support.opacity && parseInt($.browser.version.substr(0,1)) < "8"){
+							var loading_left = (((win_w - opts.leftOffset) / 2) + scrollleft) - 25;
+							var loading_top = (((win_h - opts.topOffset) / 2) + scrolltop) - 25;
+						} else {
+							var loading_left = (((win_w + opts.leftOffset) / 2) + scrollleft) - 25;
+							var loading_top = (((win_h + opts.topOffset) / 2) + scrolltop) - 25;
+						}
 						var full_loading = $("<div></div>").addClass('fullsize-loading').css({"margin-left":loading_left, "margin-top":loading_top});
 						var full_loading_inner = $("<div></div>").addClass('fullsize-loading-inner');
 						$(full_loading).prepend(full_loading_inner);
@@ -172,17 +184,22 @@
 					
 							// If the Image is bigger than the window, shrink it to fit in the window.
 							aspect = img_w / img_h;
-							if ((img_w + 30) > win_w) {
-								img_w = win_w - 30;
+							if (((img_w + opts.leftOffset) + 32) > win_w) {
+								img_w = (win_w - opts.leftOffset) - 32;
 								img_h = img_w / aspect;
 							}
-							if ((img_h + 30) > win_h) {
-								img_h = win_h - 30;
+							if (((img_h + opts.topOffset) + 36) > win_h) {
+								img_h = (win_h - opts.topOffset) - 36;
 								img_w = img_h * aspect;
 							}
 							
-							var img_left = Math.round(((win_w - img_w) / 2) + scrollleft);
-							var img_top = Math.round(((win_h - img_h) / 2) + scrolltop);
+							if(!$.support.opacity && parseInt($.browser.version.substr(0,1)) < "8"){
+								var img_left = Math.round((((win_w - opts.leftOffset) - img_w) / 2) + scrollleft);
+								var img_top = Math.round((((win_h - opts.topOffset) - img_h) / 2) + scrolltop);
+							} else {
+								var img_left = Math.round((((win_w + opts.leftOffset) - img_w) / 2) + scrollleft);
+								var img_top = Math.round((((win_h + opts.topOffset) - img_h) / 2) + scrolltop);
+							}
 							if(img_left < 0) {
 								img_left = 0;
 							}
@@ -214,8 +231,8 @@
 	
 							// Setup Shadows
 							if (opts.shadow == true) {
-								if ($.browser.safari) {
-									$(full_wrap).css({"-webkit-box-shadow":"0 2px 16px #000", "box-shadow":"0 2px 16px #000"});
+								if ($.browser.safari || ($.browser.mozilla && $.browser.version.substr(0,5) >= "1.9.1")) {
+									$(full_wrap).css({"-webkit-box-shadow":"0 2px 16px #000", "-moz-box-shadow":"0 2px 16px #000", "box-shadow":"0 2px 16px #000"});
 								} else {
 									var full_sh_wrap = $("<div></div>").addClass("fullsize-sh-wrap").css({"display":"none", "width": org_image.width(), "margin-top":new_offset.top, "margin-left":new_offset.left});
 									var full_sh_top = $("<div></div>").addClass("fullsize-sh-top");
@@ -289,7 +306,8 @@
 							marginTop: offsets.top,
 							marginLeft: offsets.left			
 						}, {queue:false, duration:opts.zoomOutSpeed, complete: function(){ele.remove();}});
-					
+						
+						opts.end.call(this);
 					}
 					
 					

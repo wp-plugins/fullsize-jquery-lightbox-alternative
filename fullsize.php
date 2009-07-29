@@ -32,6 +32,8 @@ function fullsize_install(){
         'zoomOutSpeed' => 200,
         'fadeInSpeed' => 250,
         'fadeOutSpeed' => 250,
+		'leftOffset' => 0,
+		'topOffset' => 0,
         'iconOffset' => 8,
         'forceTitleBar' => false,
         'extraTrigger' => '',
@@ -53,6 +55,8 @@ function fullsize_styles() {
         'zoomOutSpeed' => 200,
         'fadeInSpeed' => 250,
         'fadeOutSpeed' => 250,
+		'leftOffset' => 0,
+		'topOffset' => 0,
         'iconOffset' => 8,
         'forceTitleBar' => false,
         'extraTrigger' => '',
@@ -70,7 +74,7 @@ function fullsize_styles() {
 
 	echo '
 	<!-- begin fullsize elements -->
-	<link rel="stylesheet" href="'.$fullsize_path.'fullsize.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="'.$fullsize_path.'fullsize.pack.css" type="text/css" media="screen" />
 
     <script type="text/javascript">
     jQuery(document).ready(function(){

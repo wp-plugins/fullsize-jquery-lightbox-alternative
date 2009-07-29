@@ -73,6 +73,22 @@ if ('process' == $_POST['stage']) {
 </tr>
 
 <tr valign="baseline">
+    <th scope="row"><?php _e('Left Offset', 'fullsize') ?></th>
+    <td>
+        <input type="text" value="<?php echo $fullsize_options['leftOffset'] ?>" name="leftoffset" />
+        <div><small><?php _e('number (0 by default) : Offsets the Fullsize Popup Image to the left the number of pixels specified.', 'fullsize') ?></small></div>
+    </td>
+</tr>
+
+<tr valign="baseline">
+    <th scope="row"><?php _e('Top Offset', 'fullsize') ?></th>
+    <td>
+        <input type="text" value="<?php echo $fullsize_options['topOffset'] ?>" name="topoffset" />
+        <div><small><?php _e('number (0 by default) : Offsets the Fullsize Popup Image from the top the number of pixels specified.', 'fullsize') ?></small></div>
+    </td>
+</tr>
+
+<tr valign="baseline">
     <th scope="row"><?php _e('Icon Offset', 'fullsize') ?></th>
     <td>
         <input type="text" value="<?php echo $fullsize_options['iconOffset'] ?>" name="iconoffset" />
