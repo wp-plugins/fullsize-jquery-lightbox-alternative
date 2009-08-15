@@ -22,7 +22,7 @@ add_action('admin_menu', 'fullsize_options_page');
 
 
 if (!strstr($_SERVER['REQUEST_URI'], 'wp-admin')) { // if we are *not* viewing an admin page, like writing a post or making a page:
-	wp_enqueue_script('fullsize', (get_bloginfo('wpurl')."/wp-content/plugins/fullsize/jquery.fullsize.pack.js"), array('jquery'), '1.0');
+	wp_enqueue_script('fullsize', (get_bloginfo('wpurl')."/wp-content/plugins/fullsize-jquery-lightbox-alternative/jquery.fullsize.pack.js"), array('jquery'), '1.0');
 }
 
 function fullsize_install(){
@@ -43,11 +43,11 @@ function fullsize_install(){
 }
 
 function fullsize_options_page() {
-	add_options_page('Fullsize Options', 'Fullsize', 10, 'fullsize/options.php');
+	add_options_page('Fullsize Options', 'Fullsize', 10, 'fullsize-jquery-lightbox-alternative/options.php');
 }
 
 function fullsize_styles() {
-    $fullsize_path =  get_bloginfo('wpurl')."/wp-content/plugins/fullsize/";
+    $fullsize_path =  get_bloginfo('wpurl')."/wp-content/plugins/fullsize-jquery-lightbox-alternative/";
 
     $default_options = array(
         'shadow' => true,
@@ -71,15 +71,22 @@ function fullsize_styles() {
         }
     }
 
+echo json_encode($final);
+
 
 	echo '
 	<!-- begin fullsize elements -->
-	<link rel="stylesheet" href="'.$fullsize_path.'fullsize.pack.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="'.$fullsize_path.'fullsize.css" type="text/css" media="screen" />
 
     <script type="text/javascript">
-    jQuery(document).ready(function(){
-        jQuery("img").fullsize('.json_encode($final).');
-    });
+    jQuery(document).ready(function(){';
+	if(count($final) != 0){
+		echo 'jQuery("img").fullsize('.json_encode($final).');';
+	} else {
+		echo 'jQuery("img").fullsize();';
+	}
+        
+    echo '});
     </script>
 	<!-- end fullsize elements -->'."\n";
 }
