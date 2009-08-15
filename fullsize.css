@@ -4,7 +4,7 @@
 	padding: 0;
 	width: 30px;
 	height: 30px;
-	background: transparent url(fullsize-icon.png) no-repeat left top;
+	background: transparent url(images/fullsize-icon.png) no-repeat left top;
 	z-index: 950;
 	cursor: url(fullsize.cur), auto;
 }
@@ -19,13 +19,13 @@
 .fullsize-loading {
 	height: 51px;
 	width: 51px;
-	background: transparent url(fullsize-loading-bg.png) no-repeat left top;
+	background: transparent url(images/fullsize-loading-bg.png) no-repeat left top;
 }
 
 .fullsize-loading-inner {
 	height: 100%;
 	width: 100%;
-	background: transparent url(fullsize-loading-spinner.gif) no-repeat center center;
+	background: transparent url(images/fullsize-loading-spinner.gif) no-repeat center center;
 }
 
 .fullsize-image {
@@ -43,7 +43,7 @@
 	font-size: 11px;
 	font-family: "Lucida Grande", sans-serif;
 	text-shadow: 0 0 1px #000;
-	background: transparent url(fullsize-title-bg.png) repeat-x left top;
+	background: transparent url(images/fullsize-title-bg.png) repeat-x left top;
 }
 
 .fullsize-title-text {
@@ -60,7 +60,7 @@ a.fullsize-close {
 	height: 16px;
 	text-decoration: none;
 	z-index: 1000;
-	background: transparent url(fullsize-close.png) no-repeat left top;
+	background: transparent url(images/fullsize-close.png) no-repeat left top;
 }
 
 /* Safari 3.0 and Chrome rules here */
@@ -99,32 +99,32 @@ a.fullsize-close:hover {
 .fullsize-sh-top-l {
 	float: left;
 	width: 22px;
-	background-image: url(fullsize-sh-top-l.png);
+	background-image: url(images/fullsize-sh-top-l.png);
 }
 
 .fullsize-sh-top-m {
 	margin: 0 22px;
-	background-image: url(fullsize-sh-top-m.png);
+	background-image: url(images/fullsize-sh-top-m.png);
 	background-repeat: repeat-x;
 }
 
 .fullsize-sh-top-r {
 	float: right;
 	width: 22px;
-	background-image: url(fullsize-sh-top-r.png);
+	background-image: url(images/fullsize-sh-top-r.png);
 }
 
 .fullsize-sh-bottom-l {
 	float: left;
 	width: 22px;
 	height: 24px;
-	background-image: url(fullsize-sh-bottom-l.png);
+	background-image: url(images/fullsize-sh-bottom-l.png);
 }
 
 .fullsize-sh-bottom-m {
 	margin: 0 22px;
 	height: 24px;
-	background-image: url(fullsize-sh-bottom-m.png);
+	background-image: url(images/fullsize-sh-bottom-m.png);
 	background-repeat: repeat-x;
 	background-position: left bottom;
 }
@@ -133,11 +133,11 @@ a.fullsize-close:hover {
 	float: right;
 	width: 22px;
 	height: 24px;
-	background-image: url(fullsize-sh-bottom-r.png);
+	background-image: url(images/fullsize-sh-bottom-r.png);
 }
 
 .fullsize-sh-body {
-	background-image: url(fullsize-sh-body-l.png);
+	background-image: url(images/fullsize-sh-body-l.png);
 	background-repeat: repeat-y;
 }
 
@@ -145,6 +145,6 @@ a.fullsize-close:hover {
 	float: right;
 	height: 100%;
 	width: 11px;
-	background-image: url(fullsize-sh-body-r.png);
+	background-image: url(images/fullsize-sh-body-r.png);
 	background-repeat: repeat-y;
 }
