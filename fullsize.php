@@ -3,7 +3,7 @@
 Plugin Name: Fullsize jQuery Plugin
 Plugin URI: http://www.onigoetz.ch/plugins/wordpress-jquery-fullsize-plugin/
 Description: Used to overlay images on the current page. jQuery required
-Version: 0.6
+Version: 0.6.1
 Author: Stéphane Goetz
 Author URI: http://www.onigoetz.ch
 */
